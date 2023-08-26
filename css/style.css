@@ -1481,7 +1481,7 @@ body {
   opacity: 0;
 }
 .checkWrap input:checked + label::before {
-  background-image: url("../../img/check.svg");
+  background-image: url("../img/check.svg");
 }
 .checkWrap input + label {
   display: -webkit-inline-box;
@@ -1682,5 +1682,72 @@ body {
 }
 .recomend:first-child {
   margin-top: 40px;
+}
+
+.downloadRezult {
+  margin-bottom: 30px;
+}
+.downloadRezult form {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+  grid-template-columns: repeat(2, 1fr);
+}
+.downloadRezult form label {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #D9D9D9;
+  display: -ms-grid;
+  display: grid;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.downloadRezult form label input {
+  border-radius: 15px;
+  background: #FFFFFF;
+  border: 0;
+  width: 555px;
+  padding: 5px;
+}
+.downloadRezult form button {
+  background: rgba(0, 0, 0, 0);
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 15px;
+  color: #1560BD;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+.downloadRezult form button:before {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  content: "";
+  display: inline-block;
+  width: 34px;
+  aspect-ratio: 1;
+  border: 3px solid #1560BD;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 68%;
+  background-image: url("../img/checkBlue.svg");
+}
+.downloadRezult form button:hover {
+  opacity: 0.7;
+}
+.downloadRezult form button p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 37px;
 }
 /*# sourceMappingURL=style.css.map */
