@@ -111,7 +111,7 @@
   opacity: 0;
 }
 .checkWrap input:checked + label::before {
-  background-image: url("../../img/check.svg");
+  background-image: url("blob/main/img/check.svg");
 }
 .checkWrap input + label {
   display: -webkit-inline-box;
