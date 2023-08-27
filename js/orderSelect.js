@@ -26,9 +26,8 @@ $(document).ready(function() {
 
     $('#selectProgram').on('click',function(event){
         event.preventDefault();
-        //place ajax
         
-        location.replace("orderSelect.html");
+        location.replace("programm.html");
         
     });
 
@@ -44,7 +43,7 @@ $(document).ready(function() {
         if(this.checked){
             $('.choseSave .selectWrap').css('display','none')
             $('.selectWrapchoseSave').css('display','none')
-            $('.choseSave').css('justify-content','end')
+            $('.choseSave').css('justify-content','start')
             $('.selectSave').css('display', 'block')
         }
     })
