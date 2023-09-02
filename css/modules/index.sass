@@ -176,6 +176,10 @@
     column-gap: 30px
     *
         width: 100%
+    @media screen and ( max-width: $second-breack-point )
+        display: flex
+        flex-direction: column
+        margin-bottom: 20px
 
 .descrProf
     grid-column: span 4
@@ -187,10 +191,7 @@
     @media screen and ( max-width: $second-breack-point )
         height: 80px
         border-radius: 10px
-.infOpenProfile 
-    display: flex
-    flex-direction: column
-    margin-bottom: 20px
+
 #saveProf
     background-color: $main-color
     border-radius: $border-radius
@@ -459,3 +460,37 @@
         background-image: url('../img/edit.svg')
 .chatsAll
     margin-bottom: 20px
+.modal-dialog
+    max-width: 315px
+    max-height: auto
+    .modal-content
+        border-radius: $border-radius
+.modal-header
+    h5
+        font-weight: 600
+        font-size: 30px
+        line-height: 37px
+        color: $pre-color
+    margin-bottom: 20px
+.modal-footer
+    border-top: none
+    button
+        @media screen and (max-width: $first-breack-point)
+            display: flex
+        &::before
+            display: none
+        &:first-child
+            padding: 2% 5%
+            border-radius: $border-radius
+            background-color: $main-color
+            color: $sub-color
+            font-weight: 700
+            font-size: 18px
+            line-height: 22px
+            margin-bottom: 10px
+
+        &:last-child
+            font-weight: 700
+            font-size: 18px
+            line-height: 29px
+            color: $pre-color
