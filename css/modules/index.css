@@ -1145,8 +1145,8 @@
 .notice {
   background-color: #E31E24;
   border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   position: relative;
