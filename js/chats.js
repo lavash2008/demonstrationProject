@@ -232,4 +232,73 @@ function templatingItem(data) {
     return html;
 }
 
+$('.sendMessTech input#form__pic.file-input').on("change", null, $('#form__pic'), handleFileSelected)
+function handleFileSelected(input) {
 
+    var container=$(".previewImage")
+    
+    while ($('.previewImage #avatar')[0].previousElementSibling) {
+        $('.previewImage #avatar')[0].previousElementSibling.remove()
+    }
+
+    if(input.data[0])
+        file = input.data[0].files
+    else
+        file = input[0].files
+    
+    if(file.length!=0){
+        $('.sendMessTech .previewImage_text').css('display','none')
+        $('.sendMessTech .previewImage').css('justify-content','start')
+        $('.sendMessTech .previewImage').css('flex-direction','row')
+        $('.sendMessTech .previewImage').css('flex-wrap','wrap')
+
+        for (let index = 0; index < file.length; index++) {
+            if (index == 5) {
+                break;
+            }
+            const element = file[index];
+            if(element.size<=8388608){
+                let reader = new FileReader()
+                reader.readAsDataURL(element)
+                reader.onload = function () {
+                    html='<div id="image_'+index+'"' 
+                    html+='class="delImage addImage" '
+                    html+='style="background-image:url('+reader.result+'); "></div>'
+                    output=$(html)
+                    output.on('click', delImg)
+                    container[0].prepend(output[0]);
+                    
+                }
+            }
+        }
+}
+
+}
+
+function delImg(image){
+    this.remove()
+    if($('.previewImage #avatar')[0].previousElementSibling==null){
+        $('.sendMessTech .previewImage_text').css('display','block')
+        $('.sendMessTech .previewImage').css('justify-content','space-between')
+        $('.sendMessTech .previewImage').css('flex-direction','column')
+
+    }
+    
+    event.preventDefault()
+}
+
+$('#sendMess .tech .sendMess').on('click', function(params) {
+    console.log('отправка сообщения на сервер');
+
+    $.ajax({
+        type: "post",
+        url: "#",
+        data: $('.sendMessTech').serialize() ,
+        dataType: "dataType",
+        success: function (response) {
+            console.log('успех');
+        }
+    });
+
+    $('#sendMess').modal('toggle');
+})
