@@ -6608,6 +6608,9 @@ section {
   margin-top: 0;
   margin-bottom: 0;
 }
+.review .shell #createRev {
+  margin-right: 0;
+}
 .review .shell #createRev::before {
   background-image: url("../img/edit.svg");
 }
@@ -7903,9 +7906,6 @@ ul {
   }
 }
 
-a.unlockIcon {
-  pointer-events: none;
-}
 a.unlockIcon:after {
   background-image: none;
 }
