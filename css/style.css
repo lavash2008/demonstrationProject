@@ -6634,6 +6634,10 @@ input.file-input {
           box-shadow: none;
 }
 
+#deleteProfile .modal-dialog .modal-content .modal-footer .feed-button {
+  margin-right: 0;
+}
+
 .selectWrap {
   width: 28.3333333333%;
   margin: 15px 0;
