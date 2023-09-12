@@ -5754,6 +5754,11 @@ section {
 #ava.visPrfile {
   width: 30%;
 }
+@media screen and (max-width: 768px) {
+  #ava.visPrfile {
+    width: 50%;
+  }
+}
 
 #avatar {
   margin: auto;
@@ -6178,11 +6183,6 @@ section {
   display: none;
   width: 98px;
   height: 24px;
-}
-@media screen and (max-width: 768px) {
-  #saveProf {
-    display: block;
-  }
 }
 #saveProf p {
   font-size: 10px;
@@ -7167,6 +7167,9 @@ ul {
   }
 }
 
+.chat button {
+  margin-right: 0;
+}
 .chat button p {
   font-size: 24px;
 }
