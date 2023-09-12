@@ -7167,6 +7167,10 @@ ul {
   }
 }
 
+#sendMess .modal-footer button {
+  margin-right: 0;
+}
+
 .chat button {
   margin-right: 0;
 }
@@ -7356,6 +7360,8 @@ a.unlockIcon:after {
 
 .paginSaveProgram-d .feed__user .feed__info .feed__name {
   padding: 10px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 .sendMessTech #textApeal {
