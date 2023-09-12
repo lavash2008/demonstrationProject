@@ -1,12 +1,25 @@
 @import "vars.sass"
-@import "test.sass"
 
-@import inputText
+$paddingBlock: 15px
+$lineHeightQuest: 37px
+$lineHeightText: 16px
+$colorBorderCheck: #292D32
+
+@import input_text
 @import select2
-@import buttonStyle
-@import checkBox
+@import check_box
 @import pagin
+
+.d-progMin
+    display: none !important
+    @media screen and ( max-width: $first-breack-point)
+        display: flex !important
+.d-progMax
+    display: flex !important
+    @media screen and ( max-width: $first-breack-point)
+        display: none !important
 .chat
+
     button
         p
             font-size: 24px
@@ -15,6 +28,26 @@
                 line-height: 18px
         @media screen and (max-width: $first-breack-point)
             display: flex
+    .feed__avatar
+        &-chats
+            display: block 
+            flex-shrink: 0
+            padding: 0
+            margin-right: 10px
+            @media screen and ( max-width: $first-breack-point)   
+                display: none    
+    .feed__info .feed__avatar-chats 
+        display: none 
+        @media screen and ( max-width: $first-breack-point)   
+            display: block 
+    .feed__text
+        &-chats
+            font-weight: 600
+            font-size: 18px
+            line-height: 22px
+            @media screen and (max-width: $first-breack-point)
+                line-height: 18px
+                font-size: 15px
 
 a.unlockIcon
     &:after
@@ -174,11 +207,11 @@ a.unlockIcon
         justify-content: center
         align-items: center
     button 
+        display: flex
         border-radius: 0
-        @media screen and (max-width: $second-breack-point)
-            // font-weight: 700 !important
-            // font-size: 10px !important
-            // line-height: 12px !important
+        box-shadow: none
+        border: 1px #00000000
+        align-items: center
         &::before
             @media screen and (max-width: $first-breack-point)
                 width: 34px !important
@@ -201,6 +234,9 @@ a.unlockIcon
                 background-position: center center
                 background-image: url('../img/close-square.svg')
         &:last-child
+            @media screen and (min-width: $first-breack-point)
+                background: #00000000
+
             color: $main-color
             @media screen and (max-width: $first-breack-point)
                 background-color: $main-color
@@ -222,3 +258,44 @@ a.unlockIcon
                 background-repeat: no-repeat
                 background-position: center center
                 background-image: url('../img/edit.svg')
+
+.modal__adrese__ansver
+    display: none
+    min-height: 31px
+    position: absolute
+    top: 25%
+    background-color: $white-color
+    padding-top: 7px
+    width: 96%
+    transition: 0.3s
+    border-radius: 0 0 $border-radius $border-radius
+    .modal__adrese
+        background-color: $white-color
+        &:last-child
+            border-radius: 0 0 $border-radius $border-radius
+        &:hover
+            background-color: $gray-light
+        &__text
+            padding: 5px 15px 
+
+.sendMessTech #adrese
+    button        
+        border: 0px
+        background-size: 100%
+        border-radius: 0
+        -ms-flex-negative: 0
+        flex-shrink: 0
+        content: ""
+        display: inline-block
+        width: 30px
+        aspect-ratio: 1
+        background-repeat: no-repeat
+        background-position: center center
+        background-image: url("../img/search.svg")
+        position: absolute
+        top: 48px
+        left: 23px
+        &::before
+            display: none
+    #adrese.form-control
+        padding-left: 43px
