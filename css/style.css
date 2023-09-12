@@ -7354,6 +7354,10 @@ a.unlockIcon:after {
   }
 }
 
+.paginSaveProgram-d .feed__user .feed__info .feed__name {
+  padding: 10px;
+}
+
 .sendMessTech #textApeal {
   border-radius: 15px;
 }
