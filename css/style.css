@@ -5714,6 +5714,7 @@ section {
       grid-column-start: 1;
   -ms-grid-column-span: 2;
   grid-column-end: 3;
+  margin: 0;
   margin-right: 20px;
   -ms-grid-row-span: 5;
   grid-row: span 5;
@@ -5752,7 +5753,7 @@ section {
 }
 
 #ava.visPrfile {
-  width: 30%;
+  width: 25%;
 }
 @media screen and (max-width: 768px) {
   #ava.visPrfile {
@@ -5773,11 +5774,6 @@ section {
   background-position: center;
   background-repeat: no-repeat;
   background-size: 60%;
-}
-@media screen and (max-width: 768px) {
-  #avatar {
-    border-radius: 20%;
-  }
 }
 
 #gender {
@@ -6183,6 +6179,7 @@ section {
   display: none;
   width: 98px;
   height: 24px;
+  margin: auto 0;
 }
 #saveProf p {
   font-size: 10px;
