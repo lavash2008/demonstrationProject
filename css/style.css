@@ -8743,6 +8743,8 @@ ul {
   }
 }
 .paginSaveProgram-d a {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
   text-decoration: none;
   height: 100%;
 }
