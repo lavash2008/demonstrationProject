@@ -137,22 +137,22 @@
       </section>
       <section class="container container--bc">
         <form action="">
-          <div class="quest-b">
-            <div class="questText">
+          <div class="quest">
+            <div class="quest__text-invert quest__text">
               <p class="text-uppercase">Ник, для какого сезона вы хотите подобрать программу ухода?</p>
             </div>
-            <div class="respOpt radioInp adapt adaptOrder">
+            <div class="quest__resp radio__inpt quest__adapt quest__adapt-right adaptOrder">
               <input type="radio" name="season" id="autumn " value="autumn "><label for="autumn ">осень</label>
               <input type="radio" name="season" id="winter " value="winter "><label for="winter ">зима</label>
               <input type="radio" name="season" id="spring" value="spring"><label for="spring">весна</label>
               <input type="radio" name="season" id="summer" value="summer"><label for="summer">лето</label>
             </div>
           </div>
-          <div class="quest-b">
-            <div class="questText">
+          <div class="quest">
+            <div class="quest__text-invert quest__text">
               <p class="text-uppercase">Взять результаты теста для подбора программы?</p>
             </div>
-            <div class="respOpt radioInp adapt adaptOrder">
+            <div class="quest__resp radio__inpt quest__adapt quest__adapt-right adaptOrder">
               <div class="choseSave">
                 <div class="inputAnswer">
                   <input type="radio" name="resultTest" id="yes" value="yes"><label for="yes">да</label>
@@ -160,7 +160,7 @@
               </div>
               <input type="radio" name="resultTest" id="no" value="no"><label for="no">нет</label>
             </div>
-            <div class="selectWrap selectWrap-choseSave">
+            <div class="select-wrap select-wrap-choseSave">
               <small>Результаты теста</small>
               <select class="form-select"  name="gender" id="gender">
                 <option selected>Выберите из списка</option>
@@ -170,13 +170,13 @@
               </select>
             </div>
           </div>
-          <div class="quest-b selectSave">
-            <div class="questText">
+          <div class="quest selectSave">
+            <div class="quest__text-invert quest__text">
               <p class="text-uppercase">Установить параметры самостоятельно</p>
             </div>
-            <div class="respOpt checkInp checkInpOrder">
-              <div class="selectInp selectInpOrder d-flex justify-content-between flex-wrap">
-                <div class="selectWrap">
+            <div class="quest__resp  Order">
+              <div class="selectInp d-flex justify-content-between flex-wrap">
+                <div class="select-wrap">
                   <small>Пол</small>
                   <select class="form-select"  name="gender" id="gender">
                     <option selected>Выберите из списка</option>
@@ -188,7 +188,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Возраст</small>
                   <select class="form-select"  name="age" id="age">
                     <option selected>Выберите из списка</option>
@@ -206,7 +206,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Тип кожи</small>
                   <select class="form-select"  name="typeSens" id="typeSens">
                     <option selected>Выберите из списка</option>
@@ -224,7 +224,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Тип старения</small>
                   <select class="form-select"  name="typeAging" id="typeAging">
                     <option selected>Выберите из списка</option>
@@ -242,7 +242,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Состояние кожи</small>
                   <select class="form-select"  name="skinProp" id="skinProp" multiple>
                     <option value="dehydration">
@@ -265,7 +265,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Гормональный статус</small>
                   <select class="form-select"  name="oftenPreg" id="oftenPreg">
                     <option selected>Выберите из списка</option>
@@ -278,30 +278,30 @@
                   </select>
                 </div>
               </div>
-              <div class="checkWrap">
+              <div class="check__wrap">
                 <input type="checkbox" name="skinProp" value="dehydration" id="dehydration"><label for="dehydration">Чувствительная кожа</label>
               </div>
-              <div class="checkWrap">
+              <div class="check__wrap">
                 <input type="checkbox" name="skinProp" value="simple" id="simple"><label for="simple">Подобрать упрощенную программу для тех, кто не любит заморачиваться</label>
               </div>
-              <div class="checkWrap">
+              <div class="check__wrap">
                 <input type="checkbox" name="skinProp" value="hard" id="hard"><label for="hard">Подобрать развернутую программу для продвинутых любителей</label>
               </div>
             </div>
           </div>
-          <div class="quest-b selectSave">
-            <div class="questText">
+          <div class="quest selectSave">
+            <div class="quest__text-invert quest__text">
               <p class="text-uppercase">Дополнительно</p>
             </div>
-            <div class="respOpt checkInp">
-              <label for="nameFile" class="alerg selectWrap">
+            <div class="quest__resp">
+              <label for="nameFile" class="alerg select-wrap">
                 <small>
                   Аллергия на ингредиенты (название в INCI)
                 </small>
                 <input class="form-control" type="text" name="nameFile" id="nameFile">
               </label>
-              <div class="selectInp selectInpDls">
-                <div class="selectWrap">
+              <div class="selectInp quest__resp__inp_dls">
+                <div class="select-wrap">
                   <small>Ценовая категория</small>
                   <select class="form-select"  name="price" id="price" multiple>
                     
@@ -316,7 +316,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Категория косметики</small>
                   <select class="form-select"  name="category" id="category" multiple>
                     <option value="pharmacy">
@@ -345,7 +345,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Страна производства</small>
                   <select class="form-select"  name="selectCountry" id="selectCountry" multiple>
                     <option value="russian">
@@ -356,7 +356,7 @@
                     </option>
                   </select>
                 </div>
-                <div class="selectWrap">
+                <div class="select-wrap">
                   <small>Исключить активы</small>
                   <select class="form-select"  name="activeIgnore" id="activeIgnore" multiple>
                     <option value="england">
@@ -372,7 +372,7 @@
           </div>
         </form>
       </section>
-      <section class="downloadRezult container container--bc">
+      <section class="download_rezult container container--bc">
         <form class="order" action="">
           <button id="paySelect" class="text-uppercase"><p>оплатить подбор</p></button>
           <button id="selectProgram" class="text-uppercase"><p>подобрать программу</p></button>
