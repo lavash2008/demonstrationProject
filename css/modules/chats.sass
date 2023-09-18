@@ -271,8 +271,18 @@
     &__del-profile
         .modal
             &-footer
-                .feed-button
-                    margin-right: 0
+                button
+                    margin: 5px
+                    &::before
+                        display: none
+                    &:first-child
+                        color: $sub-color
+                        background-color: $main-color
+                        border-radius: $border-radius
+                        padding: 10px 15px
+                    &:last-child
+                        color: $pre-color
+
     &-footer
         border-top: none
     &__create-rev
@@ -284,14 +294,12 @@
                     &::before
                         display: none
                     &:first-child
-                        padding: 2% 5%
                         border-radius: $border-radius
                         background-color: $main-color
                         color: $sub-color
                         font-weight: 700
                         font-size: 18px
                         line-height: 22px
-                        margin-bottom: 10px
 
                     &:last-child
                         font-weight: 700

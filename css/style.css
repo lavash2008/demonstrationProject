@@ -6818,8 +6818,20 @@ textarea {
     display: none;
   }
 }
-.modal__del-profile .modal-footer .feed-button {
-  margin-right: 0;
+.modal__del-profile .modal-footer button {
+  margin: 5px;
+}
+.modal__del-profile .modal-footer button::before {
+  display: none;
+}
+.modal__del-profile .modal-footer button:first-child {
+  color: #FAFAFA;
+  background-color: #1560BD;
+  border-radius: 15px;
+  padding: 10px 15px;
+}
+.modal__del-profile .modal-footer button:last-child {
+  color: #E31E24;
 }
 .modal-footer {
   border-top: none;
@@ -6835,14 +6847,12 @@ textarea {
   display: none;
 }
 .modal__create-rev .modal-footer button:first-child {
-  padding: 2% 5%;
   border-radius: 15px;
   background-color: #1560BD;
   color: #FAFAFA;
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
-  margin-bottom: 10px;
 }
 .modal__create-rev .modal-footer button:last-child {
   font-weight: 700;
