@@ -1,0 +1,101 @@
+@import vars
+summary 
+    outline: none
+    &:focus 
+        border-color: black
+    color: $dark-lighter
+    cursor: pointer
+    transition: .2s
+    display: flex
+    align-items: center
+    box-shadow: $box-shadow-regular
+summary::marker 
+    content: ''
+
+details 
+    box-sizing: border-box
+    margin-top: 5px
+
+details[open] > summary:before 
+    transform: rotate(0deg)
+
+summary::before 
+    transition: .3s ease
+    transform: rotate(-90deg)
+    width: 16px
+    aspect-ratio: 1
+    content: " "
+    background-image: url('../img/Vector.svg')
+    background-repeat: no-repeat
+    background-position: center
+    margin-right: 10px
+    background-size: 80%
+
+.details
+    width: 90%
+    &__view
+        display: flex
+        &-place
+            width: 8%
+            margin-top: 5px
+            border: 1px solid $gray-light
+            text-align: end
+            margin-right: 2%
+    &__summary, &__view-place
+        display: flex
+        justify-content: space-between
+        padding: 5px 10px
+        margin-bottom: 10px
+        border-radius: $border-radius
+        height: 40px
+        &--last-item
+            &::before
+                background-image: none
+        p
+            width: 20%
+            text-overflow: ellipsis
+            overflow: hidden
+            @media screen and (max-width: $second-breack-point)
+                width: 45%
+    &-button
+        width: 80%
+        display: flex
+        justify-content: end
+        margin: 0 20px
+        @media screen and (max-width: $second-breack-point)
+            width: auto
+        &__edit, &__del
+            margin: 0 20px
+            width: 20px
+            aspect-ratio: 1/1
+            padding: 0
+            @media screen and (max-width: $second-breack-point)
+                margin: 0 6px
+            img
+                aspect-ratio: 1/1
+        &__edit
+            img
+                width: 100%
+        &__del
+            img
+                width: 90%
+    &__search
+        left: 5px
+        &-input
+            margin-right: 18px
+            width: 70% !important
+            @media screen and (max-width: $second-breack-point)
+                width: 100% !important
+                margin-right: 0
+                margin-bottom: 10px
+            &-last
+                width: 67% !important
+
+    &__btn
+        height: 32px
+        @media screen and (max-width: $second-breack-point)
+            width: 100%
+            height: 20px
+    .content
+        margin-left: 15px
+
