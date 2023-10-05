@@ -173,190 +173,494 @@ modalPricesCells.forEach((cell) => {
 
 var outputInfoDetails=''
 
-// Сортировка по столбцу "очередь показа"
-// $.ajax({
-//   type: "post",
-//   url: "url",
-//   dataType: "json",
-//   success: function (response) {
-//     outputInfoDetails=response
-//   }
-// });
+//предпологаемый и желаемый JSON данные в manufacter-lk/profile.json
 
-//предпологаемый и желаемый JSON данные
-outputInfoDetails=[{
-  idDB:1,
-  name:"Производитель1",
-  place_display:"1",
-  brands:[
-    {
-      idDB:1,
-      name:"Бранд1",
-      place_display:"1",
-      series:[
-        {
-          idDB:1,
-          name:"Серия1",
-          place_display:"1",
-          cosmetics:[
-            {
-              idDB:1,
-              name:"Средство1",
-              place_display:"1",
-            },
-            {
-              idDB:2,
-              name:"Средство2",
-              place_display:"2",
-            },
-            {
-              idDB:3,
-              name:"Средство3",
-              place_display:"3",
-            },
-            {
-              idDB:4,
-              name:"Средство4",
-              place_display:"4",
-            },
-          ]
-        },
-        {
-          idDB:2,
-          name:"Серия2",
-          place_display:"2",
-          cosmetics:[
-            {
-              idDB:1,
-              name:"Средство1",
-              place_display:"1",
-            },
-            {
-              idDB:2,
-              name:"Средство2",
-              place_display:"2",
-            },
-            {
-              idDB:3,
-              name:"Средство3",
-              place_display:"3",
-            },
-            {
-              idDB:4,
-              name:"Средство4",
-              place_display:"4",
-            },
-          ]
-        },
-      ]
-    },
-    {
-      idDB:2,
-      name:"Бранд2",
-      place_display:"2",
-      cosmetics:[
-        {
-          idDB:1,
-          name:"Средство1",
-          place_display:"1",
-        },
-        {
-          idDB:2,
-          name:"Средство2",
-          place_display:"2",
-        },
-        {
-          idDB:3,
-          name:"Средство3",
-          place_display:"3",
-        },
-        {
-          idDB:4,
-          name:"Средство4",
-          place_display:"4",
-        },
-      ]
-    },
-  ]
-}]
-
-
-//функция вывода данных
-function createPagin(valSearch,arrayIdParent ,blockOutput, _data, _classEl,_lastItem=false,  _placeholderSearch='', _textButtonAdd='',_visSearch=true, _pageSize=5, _pageNumber=1, _pageRange=0){
-  blockOutput.pagination({
-    dataSource: _data,
-    pageSize: 5,
-    pageNumber: 1,
-    pageRange: 0,
-    callback: function(data, pagination) {
-      var html = templatingItem(valSearch,arrayIdParent, data, _classEl, _placeholderSearch, _textButtonAdd, _visSearch, _lastItem);
-      blockOutput.prev().html(html);
-    }
-  })
+function fetchJSONFile(path, callback) {
+  //path ссыллка на ресурс получения
+  //callback что делать с полученными данными
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+              var data = JSON.parse(httpRequest.responseText);
+              if (callback) callback(data);
+          }
+      }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
 }
 
-//шаблон вывода инфы
-function templatingItem(valSearch,arrayIdParent, data, classEl='', placeholderSearch, textButtonAdd, visSearch, lastItem) {
+var globalPageSize=4
+
+//функция вывода данных
+
+$('#remItm').on('show.bs.modal', function (event) {
+
+  const buttonPar =  event.relatedTarget
+
+  let butRem= event.currentTarget.children[0].children[0].children[2].children[0]
+
+  const pathDB=buttonPar.getAttribute('data-bs-pathDB')
+
+  const idItm=buttonPar.getAttribute('data-bs-idItm')
+
+  $(butRem).click(function (e) { 
+    
+    //обработка данных с сервера
+
+    // $.ajax({
+    //   type: "post",
+    //   url: "url",
+    //   data: [pathDB, idItm],
+    //   dataType: "json",
+    //   success: function (response) {
+
+    //     $('#remItm').modal('toggle');
+    //   }
+    // });
+
+    console.log('удаление прошло');
+
+    $('#remItm').modal('hide')
+  });
+
+})
+
+function outputInfo(outpBlock, arraysData, objLabAddBut, classNexPag, collectBD,collectChange,lastTrig=false, selectPage=1, elStart=0 ,pageItemCount=globalPageSize) {
+
+  // outpBlock, блок для вывода
+  // arraysData, набор массивов для вывода
+  // objLabAddBut, объект с данными о надписи на поиске, и данных кнопок 
+  // classNexPag, класс для последующих вложений
+
+  // collectBD набор бд для запросов, 
+  // collectChange набор бд для пересылки на изменяющую страницу, 
+
+  // lastTrig=false, если последний в иерархии, то true
+  // selectPage=1, выбранная страница, как правило не меняется, но всякое может быть 
+  // elStart=0 , с какого элемента начинать вывод
+  // pageItemCount=globalPageSize кол-во выводимых элементов
+
+  html='<div class="outputInf">'
+
+    html+='<div class="details__search_wrap">'
+    +'<div class="input input--general">'
+    +'  <label for="search" class="details__search label label--light label--profile">'
+    +objLabAddBut.labelSearch
+    +'</label>'
+    +'  <input id="search" value="" type="text" class="details__search-input ">'
+    +'</div>'
+    objLabAddBut.buttons.forEach(button=>{
+      html+='  <a href="'+button.link+'" class="details__btn btn btn--blue"> '
+      +'    <p class="text--15-25">'
+      +button.text
+      +'</p>'
+      +'  </a>'
+    })
+    html+='</div>'
+    
+    let arrayData=[]
+
+    let trigNextClass=-1
+
+    arraysData.forEach(el=>{
+      if (el!=undefined) {
+        el.forEach(e=>{
+          arrayData.push(e)
+        })
+        if(collectBD.length>1 && trigNextClass==-1){
+          trigNextClass=arrayData.length
+        }
+      }
+      
+    })
+
+    if (arrayData[0]!=undefined) {
+
+        html+='<ul class="all-object">'
+
+        for (let i = 0; i < arrayData.length; i++) {
+          const element = arrayData[i];
+          
+          html+='<div class="details__view '
+    
+          if(i<elStart || i>elStart+pageItemCount) html+='d-none">'
+          else html+='">'
+    
+              html+='<input type="text" value="'+element.place_display+'" class="details__view-place">'
+              +'<details class="details">'
+              +'<summary class="details__summary '
+
+              if( lastTrig || i>=trigNextClass && trigNextClass!=-1 ) html+='details__summary--last-item '
+              html+='">'
+              html+='<p class="title--h5">'+element.name+'</p>'
+              +'<div class="details-button">    '
+              +'<a class="details-button__edit btn change_item" href="'
+              if(i<trigNextClass)
+                html+=collectChange[1]
+              else
+                html+=collectChange[0]
+              
+              //get параметры, не знаю какие параметры нужны, поэтому пока id передам 
+
+              html+='?id='+element.idDB+'">'
+
+              +'<img src="../img/btn_pen.svg" alt="Изменить"></a>'
+              +'<a data-bs-toggle="modal" '
+              +'data-bs-pathDB="' 
+              
+              if(i<trigNextClass)
+                html+=collectBD[1]
+              else
+                html+=collectBD[0]
+
+              html+='"'
+              +'data-bs-idItm="' +element.idDB+'"'
+
+              html+=' data-bs-target="#remItm" class="details-button__del btn rem_item">'
+              +'<img src="../img/destr.svg" alt="Удаление">'
+
+              html+='</a>'
+              +'</div>'
+              +'</summary>'
+              if(classNexPag!=''){
+                html+='<div class="content">'
+                +'<div class="pagin__output-info">  '
+                +'<div class="pagin__output-info" id="view-all-'+classNexPag+'-'+element.idDB+'">'
+                +'</div>'
+                +'</div>'
+                +'</div>'
+              }
+              html+='</details>'    
+            
+          
+          html+='</div>'
+        }
   
-  html = '<ul>'
+        html+='</ul>'
 
-  for (let i = 0; i < data.length; i++) {
-    const manufacter = data[i];
-    if(i==0 && visSearch){
-      html+='<div class="input input--general d-flex justify-content-between">'
-      +'<label for="search_'+classEl
-      arrayIdParent.forEach(id=>{
-        html+='_'+id
-      })
-      html+='" class="details__search label label--light label--profile">'
-      +placeholderSearch
-      +'</label>'
-      +'<input  id="searchIn_'+classEl
-      arrayIdParent.forEach(id=>{
-        html+='_'+id
-      })
-      html+='" value="'+valSearch+'" type="text" class="details__search-input '
-      if(lastItem) html+='details__search-input-last'
-      html+='">'
-      +'<a href="" class="details__btn btn btn--blue"> <p class="text--15-25">Добавить '
-      +textButtonAdd
-      +'</p></a>'
-      +'</div>'
-    }
-    html+='<div class="details__view">'
-    +'<input type="text" value="'+manufacter.place_display+'" name="" class="details__view-place" id="">'
+        if (arrayData.length>pageItemCount) {
+          
+          html+='<div class="paginationjs">'
+          +'            <div class="paginationjs-pages">'
+          +'              <ul>'
+          +'                <li class="paginationjs-prev ">'
+          +'                  <a></a>'
+          +'                </li>'
+      
+          for (let i = 1; i < Math.ceil(arrayData.length/pageItemCount); i++) {
+            html+='<li class="paginationjs-page J-paginationjs-page'
+            if (i==selectPage) {
+              html+=' active'
+            }
+            html+='" data-num="'+i+'">'
+            +'<a>'+i+'</a>'
+            +'</li>'
+          }
+      
+          html+='                <li class="paginationjs-next ">'
+          +'                  <a></a>'
+          +'                </li>'
+          +'              </ul>'
+          +'            </div>'
+          +'          </div>'
+          html+='</div>'
+        }
+      }
 
-    html+='<details class="details">'
-    +'<summary class="details__summary '
-    if(lastItem) html+='details__summary--last-item'
-    html+='">'
-    +'  <p class="title--h5">'
-    +manufacter.name
-    +'  </p> '
-    +'  <div class="details-button">'
-    +'    <a class="details-button__edit btn" href="#">'
-    +'      <img src="../img/btn_pen.svg" alt="">'
-    +'    </a>'
-    +'    <a class="details-button__del btn" href="#">'
-    +'      <img src="../img/destr.svg" alt="">'
-    +'    </a>'
-    +'  </div>'
-    +'</summary>'
-    +'<div class="content">'
-    +'<div class="pagin__output-info">'
-    +'  <p></p>'
-    +'  <div class="pagin__output-info" id="'
-    +classEl+'_'+manufacter.idDB+'_view-all'
-    +'">'
-    +'  </div>'
-    +'</div>'
-    +'</div>'
-    +'</details>'
-    +'</div>'
+      $(outpBlock).html(html)
+}
+
+function changePage(params) {
+
+  //самодельная пагинация
+
+  //объекты для сортировки
+  collectSort=params.data.pageSelect.parentElement.parentElement.parentElement.parentElement.children[1].children
+
+  for (let i = 0; i < collectSort.length; i++) {
+    const element = collectSort[i];
+    //скрытие всех элементов
+    element.classList.add('d-none')
   }
-  html += '</ul>'
 
-  return html;
+  numListActive=-1
+
+  switch (params.data.pageSelect.attributes[0].value.split(' ')[0].split('-')[1]) {
+    case 'page':
+    
+      selectPage=params.data.pageSelect.attributes[1].value
+      
+      searchArray=Array.prototype.slice.call(params.data.pageSelect.parentElement.children)
+      next=searchArray.pop().previousElementSibling
+      prev=searchArray.shift().nextElementSibling
+      
+      searchArray.forEach(el=>{
+        if(el.classList.contains('active')){
+          el.classList.remove('active');
+        }
+      })
+
+      params.data.pageSelect.classList.add('active')
+      
+
+      if(selectPage<=prev.attributes[1].value){
+
+        $(params.data.pageSelect.parentElement.children[0])[0].classList.add('disabled')
+
+        $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.remove('disabled')
+
+      }else if(selectPage+1>=next.attributes[1].value){
+
+        $(params.data.pageSelect.parentElement.children[0])[0].classList.remove('disabled')
+
+        $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.add('disabled')
+
+      }else{
+        $(params.data.pageSelect.parentElement.children[0])[0].classList.remove('disabled')
+
+        $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.remove('disabled')
+      }
+
+      break;
+    case 'prev':
+      
+      if (!params.data.pageSelect.classList.contains('disabled')) {
+        activeValue=0;
+  
+        searchArray=Array.prototype.slice.call(params.data.pageSelect.parentElement.children)
+        trash=searchArray.pop()
+        trash=searchArray.shift()
+        
+        for (let ch = 0; ch < searchArray.length; ch++) {
+          const child = searchArray[ch];
+          
+          if(child.classList[2]=='active'){
+  
+            numListActive=ch
+  
+            activeValue=Number(child.attributes["data-num"].value)
+  
+            child.classList.remove('active')
+          }
+        }
+  
+        if(activeValue-1>=params.data.pageSelect.nextElementSibling.attributes[1].value)
+          selectPage=activeValue-1
+        else
+          selectPage=params.data.pageSelect.nextElementSibling.attributes[1].value
+  
+
+
+        if(activeValue-1<=params.data.pageSelect.nextElementSibling.attributes[1].value){
+
+          $(params.data.pageSelect.parentElement.children[0])[0].classList.add('disabled')
+
+          $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.remove('disabled')
+
+        }else if(activeValue-1>params.data.pageSelect.nextElementSibling.attributes[1].value){
+
+          $(params.data.pageSelect.parentElement.children[0])[0].classList.remove('disabled')
+
+          $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.remove('disabled')
+
+        }else{
+
+        }
+
+        if(numListActive-1>=0 )
+          searchArray[numListActive-1].classList.add('active')
+        else
+          searchArray[0].classList.add('active')
+      }
+
+      break;
+    case 'next':
+
+    if (!params.data.pageSelect.classList.contains('disabled')) {
+    
+      activeValue=0;
+
+      searchArray=Array.prototype.slice.call(params.data.pageSelect.parentElement.children)
+      trash=searchArray.pop()
+      trash=searchArray.shift()
+
+      for (let ch = 0; ch < searchArray.length; ch++) {
+        const child = searchArray[ch];
+
+        if(child.classList[2]=='active'){
+
+          numListActive=ch
+
+          activeValue=Number(child.attributes["data-num"].value)
+
+          child.classList.remove('active')
+
+        }
+      }
+
+      if(activeValue+1<=params.data.pageSelect.previousElementSibling.attributes[1].value)
+        selectPage=activeValue+1
+      else
+        selectPage=params.data.pageSelect.previousElementSibling.attributes[1].value
+      
+      if(activeValue+1>=params.data.pageSelect.previousElementSibling.attributes[1].value){
+
+        $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.add('disabled')
+
+        $(params.data.pageSelect.parentElement.children[0])[0].classList.remove('disabled')
+        
+      }else if(activeValue+1<params.data.pageSelect.previousElementSibling.attributes[1].value){
+
+        $(params.data.pageSelect.parentElement.children[params.data.pageSelect.parentElement.children.length-1])[0].classList.remove('disabled')
+      
+        $(params.data.pageSelect.parentElement.children[0])[0].classList.remove('disabled')
+
+      }else{
+
+      }
+
+      if(numListActive+1<=searchArray.length )
+        
+        numListActive+1==searchArray.length ? searchArray[searchArray.length-1].classList.add('active') : searchArray[numListActive+1].classList.add('active')
+      else
+        searchArray[searchArray.length-1].classList.add('active')
+
+    }
+
+      break;
+  }
+
+  startCikle=Number(selectPage)
+  finishCikle=0
+  
+  startCikle==1 ? startCikle=0 : startCikle=globalPageSize*(Number(selectPage)-1)+1
+
+  finishCikle=startCikle+globalPageSize
+
+  for (let i = startCikle; i <= finishCikle; i++) {
+
+    const element = collectSort[i];
+    if(element==undefined)
+      break;
+    //скрытие всех элементов
+    element.classList.remove('d-none')
+  }
+
+  html=new DOMParser().parseFromString('<li class="paginationjs-page J-paginationjs-page disabled"><a>...</a></li>', "text/html").getElementsByTagName("li")[0]
+
+  for (let k = 1; k < params.data.pageSelect.parentElement.children.length-1; k++) {
+    const element = params.data.pageSelect.parentElement.children[k];
+    const elemPrev=params.data.pageSelect.parentElement.children[k-1]
+    const elemNext=params.data.pageSelect.parentElement.children[k+1]
+
+    element.classList.add('d-none')
+    
+    if(!(k==1 || k==params.data.pageSelect.parentElement.children.length-2)){
+      
+      if(element.classList.contains('active')){
+    
+        element.classList.remove('d-none')
+
+        if(k-1!=1){
+          if (k-2>3) {
+            //перенести выше в отдельную переменную
+            
+            // console.log('Добавить блок с точками после');
+          }
+
+          element.classList.remove('d-none')
+        }
+        if(k+1!=(element.parentElement.children.length-1)){
+          if (k+2<(element.parentElement.children.length-2)) {
+            //перенести выше в отдельную переменную
+            
+            // console.log('Добавить блок с точками перед');
+          }
+
+          element.classList.remove('d-none')
+        }
+      }
+      else{
+        if(params.data.pageSelect.parentElement.children[k-1].classList.contains('active') || params.data.pageSelect.parentElement.children[k+1].classList.contains('active'))
+          element.classList.remove('d-none')
+      }
+      if(k==Math.ceil((element.parentElement.children.length-1)/2))
+        element.classList.remove('d-none')
+    }            
+    else{
+      element.classList.remove('d-none')
+
+      if(element.classList.contains('active'))
+        k==1 ? element.parentElement.children[k+1].classList.remove('d-none') : element.parentElement.children[k-1].classList.remove('d-none')
+    }
+  }
+}
+
+function search(el){
+
+searchText=el.data.input.value
+
+allObject=el.data.input.parentElement.parentElement.parentElement.children[1].children
+
+paginBlock=el.data.input.parentElement.parentElement.parentElement.children[2]
+
+for (let i = 0; i < allObject.length; i++) {
+  const element = allObject[i];
+  element.classList.remove('d-none')
+}
+
+for (let i = 0; i < allObject.length; i++) {
+  const element = allObject[i];
+  
+  if(!element.children[1].children[0].children[0].outerText.includes(searchText)){
+    element.classList.add('d-none')
+  }
+}
+
+if(searchText==''){
+  paginBlock.classList.add('d-block')
+  paginBlock.classList.remove('d-none')
+
+  for (let i = 0; i < allObject.length; i++) {
+    const element = allObject[i];
+    element.classList.add('d-none')
+  }
+
+  pageArray=paginBlock.children[0].children[0].children
+  
+  selectPage=-1
+  
+  for (let k = 1; k < pageArray.length-1; k++) {
+    const element = pageArray[k];
+    if (element.classList.contains('active')) {
+  
+      selectPage=element.attributes[1].value
+    }
+  }
+  
+  startCikle=Number(selectPage)
+  finishCikle=0
+  
+  startCikle==1 ? startCikle=0 : startCikle=globalPageSize*(Number(selectPage)-1)+1
+  
+  finishCikle=startCikle+globalPageSize
+  
+  for (let i = startCikle; i <= finishCikle; i++) {
+  
+    const element = allObject[i];
+    if(element==undefined)
+      break;
+    //скрытие всех элементов
+    element.classList.remove('d-none')
+  }
+}
+else{
+  paginBlock.classList.add('d-none')
+  paginBlock.classList.remove('d-block')
+}
+
 }
 
 //анимация details
@@ -442,139 +746,251 @@ document.querySelectorAll('.add-info__schemes details').forEach((el) => {
 
 //вывод информации с помощью пагинации
 //производитель
-let global_club='manuf'
-createPagin('',[0],$('#view_all_info_manufacter'),outputInfoDetails, global_club,false, null, null, false,)
 
-var object=$('#'+global_club+'_'+outputInfoDetails[0].idDB+'_view-all')
-//бренды
-global_club='brand'
-createPagin('',[0],object,outputInfoDetails[0].brands, global_club,false, 'Поиск бренда', 'бренд')
-
-for (let i = 0; i < outputInfoDetails[0].brands.length; i++) {
-  const brand = outputInfoDetails[0].brands[i];
-  
-  object=$('#'+global_club+'_'+brand.idDB+'_view-all')
-  
-  //зависимости есть ли серия у бренда
-  if(brand.series != undefined){
-    createPagin('',[0, i],object, brand.series, 'seria',false, 'Поиск серии', 'серия')
-
-    for (let j = 0; j < brand.series.length; j++) {
-      const seria = brand.series[j];
-      object=$('#seria_'+seria.idDB+'_view-all')
-
-      createPagin('',[0, i, j],object, seria.cosmetics, 'cosmetic',true, 'Поиск средства', 'средство')
-    }
-
-  }else{
-    createPagin('',[0, i],object, brand.cosmetics, 'cosmetic',true, 'Поиск средства', 'средство')
-  }
+var adressDB={
+  tabels:[
+    "link_to_brands",
+    "link_to_serie",
+    "link_to_cosmetic",
+  ]
 }
 
-$('input[id^="searchIn"]').keyup(searching);
+var adressChages={
+  links:[
+    'page-brand-info.html',
+    'page-series-info.html',
+    'page-product-info.html',
+  ]
+}
 
-function searching(element) { 
-  //вывод новой пагинации по поиску
-  var outputHtml=$(element.currentTarget.parentElement.parentElement.parentElement.parentElement.lastChild)
-  //строка поиска
-  var stroke_seach=element.target.value
+function outputInfBrands(){
 
-  let array_el=element.target.attributes.id.value.split('_');
-
-  let idForFocus=element.target.attributes.id;
-  let classEl=array_el[1]
-  //id_elem [id производителя, id брендов, id серии] в json
-  let id_elem=$.grep(array_el, function(el){
-    return !isNaN(el)
-  })
-
-  var arrayOutput=[];
-  switch (id_elem.length) {
-    case 1:
-        arraySearch=outputInfoDetails[id_elem[0]].brands
-
-        arraySearch.forEach(el=>{
-          if(el.name.includes(stroke_seach))
-            arrayOutput.push(el)
-        })
-        createPagin(stroke_seach,id_elem, outputHtml, arrayOutput, classEl, false, 'Поиск бренда', 'бренд')
-
-        for (let i = 0; i < arrayOutput.length; i++) {
-          const brand = arrayOutput[i];
-          
-          object=$('#'+global_club+'_'+brand.idDB+'_view-all')
-          
-          //зависимости есть ли серия у бренда
-          if(brand.series != undefined){
-            createPagin('',[0, i],object, brand.series, 'seria',false, 'Поиск серии', 'серия')
-        
-            for (let j = 0; j < brand.series.length; j++) {
-              const seria = brand.series[j];
-              object=$('#seria_'+seria.idDB+'_view-all')
-        
-              createPagin('',[0, i, j],object, seria.cosmetics, 'cosmetic',true, 'Поиск средства', 'средство')
-            }
-        
-          }else{
-            createPagin('',[0, i],object, brand.cosmetics, 'cosmetic',true, 'Поиск средства', 'средство')
-          }
-        }
-
-        $('input[id^="searchIn"]').keyup(searching);
-      break;
-    case 2:
-      let triger
-      let placeholder
-      let addText
-
-      if (outputInfoDetails[id_elem[0]].brands[id_elem[1]].series == undefined) {
-        arraySearch=outputInfoDetails[id_elem[0]].brands[id_elem[1]].cosmetics
-        triger=true
-        placeholder='Поиск средства'
-        addText='средство'
-
-        arraySearch.forEach(el=>{
-          if(el.name.includes(stroke_seach))
-            arrayOutput.push(el)
-        })
+  var prompt = new Promise((resolve, reject) => {
   
-        createPagin(stroke_seach,id_elem, outputHtml, arrayOutput, classEl, triger, placeholder,addText)
-      }
-      else {
-        arraySearch=outputInfoDetails[id_elem[0]].brands[id_elem[1]].series
-        triger=true
-        placeholder='Поиск серии'
-        addText='серию'
-
-        arraySearch.forEach(el=>{
-          if(el.name.includes(stroke_seach))
-            arrayOutput.push(el)
-        })
+    fetchJSONFile('profile.json', function(data){
+      outputInfoDetails=data
+      resolve(outputInfoDetails)
+    });
   
-        createPagin(stroke_seach,id_elem, outputHtml, arrayOutput, classEl, triger, placeholder,addText)
-
-        for (let j = 0; j < arrayOutput.length; j++) {
-          const seria = arrayOutput[j];
-          object=$('#seria_'+seria.idDB+'_view-all')
-    
-          createPagin('',[0, id_elem[1], j],object, seria.cosmetics, 'cosmetic',true, 'Поиск средства', 'средство')
-        }
-      }
-
+  });
+  
+  prompt.then(data=>{
+  
+    return new Promise((resolve, reject)=>{
       
-      $('input[id^="searchIn"]').keyup(searching);
-      break;
-    case 3:
-        arraySearch=outputInfoDetails[id_elem[0]].brands[id_elem[1]].series[id_elem[2]].cosmetics
+      var classPg='brand'
+  
+      outputInfo($('#view-all-item'), [data.brands],
+      {
+        labelSearch:'Поиск бренда',
+        buttons:[
+          {
+            link:'',
+            text:'Добавить бренд',
+          },
+        ]
+      }
+      ,classPg, [adressDB.tabels[0]],[adressChages.links[0]] )
+      
+      params=[{
+        brands:data.brands,
+        class:classPg
+      }]
+      resolve(params)
+    })
+  }).then(params=>{
+  
+    return new Promise((resolve, reject)=>{
+      brandWithSer=[];
+  
+      var nxtClassPg='serie'
+  
+      output: for (let k = 0; k < params[0].brands.length; k++) {
+        const brand = params[0].brands[k];
         
-        arraySearch.forEach(el=>{
-          if(el.name.includes(stroke_seach))
-            arrayOutput.push(el)
-        })
-        createPagin(stroke_seach,id_elem, outputHtml, arrayOutput, classEl, true, 'Поиск серии', 'серию')
-      $('input[id^="searchIn"]').keyup(searching);
-      break;
-  }
-
-  $(idForFocus).focus();
+        if(brand.series != undefined && brand.cosmetics != undefined){
+          outputInfo($('#view-all-'+params[0].class+'-'+brand.idDB), [brand.series,brand.cosmetics],
+          {
+            labelSearch:'Поиск  средства/серии',
+            buttons:[
+              {
+                link:'',
+                text:'Добавить серию',
+              },
+              {
+                link:'',
+                text:'Добавить средство',
+              },
+            ]
+          },nxtClassPg,[adressDB.tabels[1], adressDB.tabels[2] ],[adressChages.links[1], adressChages.links[2] ] ,false  )
+  
+          brand.series.forEach(serie=>{
+            outputInfo($('#view-all-'+nxtClassPg+'-'+serie.idDB), [serie.cosmetics],
+            {
+              labelSearch:'Поиск  средства',
+              buttons:[
+                {
+                  link:'',
+                  text:'Добавить средство',
+                },
+              ]
+            }
+            ,'',[adressDB.tabels[2]],[adressChages.links[2]],true )
+          })
+        
+          continue output;
+        }
+  
+        if (brand.series != undefined) {
+          brandWithSer.push(brand)
+        } 
+  
+        outputInfo($('#view-all-'+params[0].class+'-'+brand.idDB), [brand.cosmetics],
+        {
+          labelSearch:'Поиск средства/серии',
+          buttons:[
+            {
+              link:'',
+              text:'Добавить серию',
+            },
+            {
+              link:'',
+              text:'Добавить средство',
+            },
+          ]
+        },'',[adressDB.tabels[2]],[adressChages.links[2]],true  )
+  
+      }
+      
+      resolve({brands:brandWithSer,classPrev:params[0].class,class:nxtClassPg})
+  
+    })
+  })
+  .then((brandWithSer)=>{
+  
+    var outputCosmetic=[];
+  
+    return new Promise((resolve, reject)=>{
+      brandWithSer.brands.forEach((brand)=>{
+  
+          outputInfo($('#view-all-'+brandWithSer.classPrev+'-'+brand.idDB), [brand.series],
+          {
+            labelSearch:'Поиск  средства/ серии',
+            buttons:[
+              {
+                link:'',
+                text:'Добавить серию',
+              },
+              {
+                link:'',
+                text:'Добавить средство',
+              },
+            ]
+          },
+          brandWithSer.class,[adressDB.tabels[1]],[adressChages.links[1]] )
+  
+          outputCosmetic.push(brand.series)
+  
+      })
+      resolve({series:outputCosmetic, class:brandWithSer.class})
+    })
+  
+  }).then((serWithClass)=>{
+    
+    return new Promise((resolve, reject)=>{
+  
+      outputItem=[]
+      serWithClass.series.forEach(cosmetics => {
+        cosmetics.forEach(element => {
+          outputItem.push(element)
+        });
+      })
+  
+      resolve({outputItem:outputItem, class:serWithClass.class})
+    })
+  })
+  .then((outputInf)=>{
+  
+    outputInf.outputItem.forEach(serie => {
+      outputInfo($('#view-all-'+outputInf.class+'-'+serie.idDB), [serie.cosmetics],
+      {
+        labelSearch:'Поиск  средства',
+        buttons:[
+          {
+            link:'',
+            text:'Добавить средство',
+          },
+        ]
+      }
+      ,'',[adressDB.tabels[2]],[adressChages.links[2]],true )
+  });
+  })
+  .then(()=>{
+    for (let i = 0; i < $('li[class^="paginationjs"]').length; i++) {
+      const element = $('li[class^="paginationjs"]')[i];
+    
+      triger=false
+      element.classList.forEach((classEl)=>{
+        if(classEl=='disabled'){
+          triger=true
+        }
+      })
+      if(!triger){
+        $(element).bind('click', {pageSelect: element}, changePage);
+        html=new DOMParser().parseFromString('<li class="paginationjs-page J-paginationjs-page disabled"><a>...</a></li>', "text/html").getElementsByTagName("li")[0]
+        
+  
+        for (let k = 1; k < element.parentElement.children.length-1; k++) {
+          const pageSelector = element.parentElement.children[k];
+          
+          pageSelector.classList.add('d-none')
+          
+          if(!(k==1 || k==pageSelector.parentElement.children.length-2)){
+            
+            if(pageSelector.classList.contains('active')){
+      
+              pageSelector.classList.remove('d-none')
+      
+              if(k-1!=1){
+                pageSelector.classList.remove('d-none')
+              }
+              if(k+1!=(pageSelector.parentElement.children.length-1)){
+                pageSelector.classList.remove('d-none')
+              }
+            }else{
+              if(pageSelector.parentElement.children[k-1].classList.contains('active') || pageSelector.parentElement.children[k+1].classList.contains('active'))
+              pageSelector.classList.remove('d-none')
+            } 
+            if(k==Math.ceil((element.parentElement.children.length-1)/2)){
+              pageSelector.classList.remove('d-none')
+            }
+          }
+          else{
+            pageSelector.classList.remove('d-none')
+  
+            if(pageSelector.classList.contains('active'))
+              k==1 ? element.parentElement.children[k+1].classList.remove('d-none') : element.parentElement.children[k-1].classList.remove('d-none')
+            
+          }
+  
+        }
+      }
+    }
+    
+    for(let i=0;i<$('input[id="search"]').length;i++){
+      const element = $('input[id="search"]')[i];
+      array=element.parentElement.parentElement.children[1].children
+      $(element).bind('keyup', {input: element, arraySearch:array}, search)
+    }
+  })
 }
+
+//присвоить кнопкам удаления функцию 
+function detais(){
+
+}
+
+$(document).ready(
+  outputInfBrands()
+)
+

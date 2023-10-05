@@ -223,12 +223,10 @@
             </div>
             <div class="add-info__content ease3 col-12 overflow-hidden">
               <div class="add-info__schemes p-2 col-12">
-                <div class="pagin__output-info pagin__output-info-lk-man">
-                  <p></p>
-                  <div class="pagin__output-info d-none" id="view_all_info_manufacter">
-                  </div>
+                <div id="view-all-item">
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>
@@ -1222,7 +1220,23 @@
         </div>
       </div>
     </div>
-
+    <div class="modal  fade" id="remItm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="remItmLab" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="remItmLab">Удалить </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+            После удаления, данные нельзя будет восстановить 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger">Удалить</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Отмена</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--modal prices-->
     <div
       class="modal__prices modal fade"
@@ -1393,4 +1407,6 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script defer src="../js/profile.js"></script>
   </body>
-</html>
+  </html>
+  
+  
