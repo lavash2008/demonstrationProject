@@ -9018,7 +9018,7 @@ summary::before {
 
 @media screen and (max-width: 768px) {
   .details[open=""] {
-    width: 80%;
+    width: 83%;
   }
   .details[open=""] .details__summary {
     width: 100%;
@@ -9053,7 +9053,12 @@ summary::before {
   height: 40px;
 }
 .details__summary--last-item::before, .details__view-place--last-item::before {
-  background-image: none;
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .details__summary--last-item p, .details__view-place--last-item p {
+    width: 30% !important;
+  }
 }
 .details__summary p, .details__view-place p {
   width: 20%;
@@ -9160,6 +9165,7 @@ summary::before {
   transition: 0.3s;
   height: 100%;
   margin: 0 10px;
+  padding: 5px 20px;
 }
 @media screen and (max-width: 768px) {
   .details__btn {
@@ -9180,7 +9186,7 @@ summary::before {
 @media screen and (max-width: 768px) {
   .details .content {
     width: 100%;
-    margin-left: -25%;
+    margin-left: -18%;
   }
   .details .content .pagin__output-info {
     width: 110%;
