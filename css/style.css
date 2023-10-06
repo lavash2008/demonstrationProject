@@ -5937,9 +5937,6 @@ textarea {
   }
 }
 
-.add-info a:hover {
-  color: inherit;
-}
 .add-info__wrapper {
   border-radius: 10px;
   background: #FFFFFF;
@@ -5976,6 +5973,15 @@ textarea {
       -ms-flex-align: center;
           align-items: center;
 }
+.add-info__button svg {
+  height: 24px;
+}
+@media screen and (max-width: 1400px) {
+  .add-info__button svg {
+    height: 15px;
+  }
+}
+
 .shops {
   margin-top: 25px;
   margin-bottom: 28px;
@@ -8252,6 +8258,9 @@ textarea {
 .feed-button:hover {
   opacity: 0.7;
 }
+.feed-button__settng:before {
+  background-image: url("../img/setting.svg") !important;
+}
 
 .dls {
   display: -webkit-box;
@@ -9004,11 +9013,13 @@ summary::before {
   background-size: 80%;
 }
 
-.details[open=""] {
-  width: 80%;
-}
-.details[open=""] .details__summary {
-  width: 100%;
+@media screen and (max-width: 768px) {
+  .details[open=""] {
+    width: 80%;
+  }
+  .details[open=""] .details__summary {
+    width: 100%;
+  }
 }
 
 .details {
@@ -9132,7 +9143,6 @@ summary::before {
 }
 .details__search_wrap .input {
   width: 100%;
-  margin-right: 18px;
   margin-bottom: 10px;
 }
 @media screen and (max-width: 768px) {
@@ -9143,6 +9153,8 @@ summary::before {
   }
 }
 .details__btn {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
   height: 100%;
   margin: 0 10px;
 }
