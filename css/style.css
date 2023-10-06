@@ -5974,14 +5974,16 @@ textarea {
           align-items: center;
 }
 .add-info__button {
-  font-size: 24px;
   line-height: 28px;
   color: #1560BD;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 }
 @media screen and (max-width: 1400px) {
   .add-info__button {
     font-size: 15px;
-    line-height: 18px;
   }
 }
 .add-info__button svg {
