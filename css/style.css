@@ -5973,12 +5973,23 @@ textarea {
       -ms-flex-align: center;
           align-items: center;
 }
+.add-info__button {
+  font-size: 24px;
+  line-height: 28px;
+  color: #1560BD;
+}
+@media screen and (max-width: 1400px) {
+  .add-info__button {
+    font-size: 15px;
+    line-height: 18px;
+  }
+}
 .add-info__button svg {
-  height: 24px;
+  height: 30px;
 }
 @media screen and (max-width: 1400px) {
   .add-info__button svg {
-    height: 15px;
+    height: 18px;
   }
 }
 
@@ -8260,9 +8271,33 @@ textarea {
 }
 .feed-button__settng {
   margin-bottom: 16px;
+  margin-right: 0;
+}
+@media screen and (max-width: 1400px) {
+  .feed-button__settng p {
+    margin: 0;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .feed-button__settng p {
+    display: none;
+  }
 }
 .feed-button__settng:before {
   background-image: url("../img/setting.svg") !important;
+}
+@media screen and (max-width: 768px) {
+  .feed-button__settng:before {
+    margin-right: 0 !important;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .feed-button__settng {
+    margin-bottom: 0;
+  }
 }
 
 .dls {
