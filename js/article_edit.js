@@ -121,6 +121,7 @@ function activeButton() {
         //         return 'good'
         //     }
         // });
+        console.log("Отправка завершена");
 
         return 'good'
     }
