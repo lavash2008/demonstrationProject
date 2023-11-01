@@ -76,6 +76,7 @@ function activeButton() {
     $('.datepicker').addClass('timer-hide')
 
     function sendFormData(formData,link=''){
+        console.log("Отправка завершена");
         
         //проверка входных значений
         if (!editor.getData() || 
@@ -121,7 +122,6 @@ function activeButton() {
         //         return 'good'
         //     }
         // });
-        console.log("Отправка завершена");
 
         return 'good'
     }
