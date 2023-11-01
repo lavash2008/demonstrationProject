@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Страница производителя</title>
+    <title>Редактирование статьи</title>
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/jq.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-expand-xxl top-bar">
@@ -21,7 +24,7 @@
         >
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand col-1 d-xxl-none top-bar__short-logo" href="#"
+        <a class="navbar-products col-1 d-xxl-none top-bar__short-logo" href="#"
         ><img src="../img/short-logo.svg" alt=""
         /></a>
         <div
@@ -29,7 +32,7 @@
                 id="navbarTogglerDemo01"
         >
             <a
-                    class="navbar-brand col-11 col-xxl-4 offset-md-1 top-bar__logo"
+                    class="navbar-products col-11 col-xxl-4 offset-md-1 top-bar__logo"
                     href="#"
             ><img src="../img/logo.svg" alt=""
             /></a>
@@ -46,7 +49,7 @@
 
             <ul class="navbar-nav col-12 top-bar__list">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">О нас</a>
+                    <a class="nav-link" aria-current="page" href="#">О нас</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Подбор косметики</a>
@@ -119,100 +122,210 @@
     </div>
 </nav>
 
-<main class="mailing">
-
-    <section class="mailing__title">
+<main class="editor_article lk-user">
+    <section class="title title-custom">
         <div class="container container--bc">
-            <div class="page-title d-flex flex-wrap align-items-center col-xxl-10 offset-xxl-1">
-                <div class="col-1 col-xxl-12 order-xxl-1">
-                    <a href="" class="btn__svg-confirm text--15-30 fw-600 main-color hover-red d-flex align-items-center justify-content-start justify-content-xxl-center m-auto">
-                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g id="vuesax/outline/arrow-left">
-                                <g id="arrow-left">
-                                    <path id="Vector" d="M11.9633 23.5254C11.7258 23.5254 11.4883 23.4379 11.3008 23.2504L3.71328 15.6629C3.35078 15.3004 3.35078 14.7004 3.71328 14.3379L11.3008 6.75039C11.6633 6.38789 12.2633 6.38789 12.6258 6.75039C12.9883 7.11289 12.9883 7.71289 12.6258 8.07539L5.70078 15.0004L12.6258 21.9254C12.9883 22.2879 12.9883 22.8879 12.6258 23.2504C12.4508 23.4379 12.2008 23.5254 11.9633 23.5254Z" fill="#1560BD"></path>
-                                    <path id="Vector_2" d="M25.6234 15.9375H4.58594C4.07344 15.9375 3.64844 15.5125 3.64844 15C3.64844 14.4875 4.07344 14.0625 4.58594 14.0625H25.6234C26.1359 14.0625 26.5609 14.4875 26.5609 15C26.5609 15.5125 26.1359 15.9375 25.6234 15.9375Z" fill="#1560BD"></path>
-                                </g>
-                            </g>
-                        </svg>
-                        <span class="text-decoration-none text-uppercase d-none d-xxl-block ms-2">Вернуться в кабинет</span>
-                    </a>
-                </div>
+            <div class="page-title page-title d-flex flex-wrap align-items-center col-xxl-10 offset-xxl-1">
                 <div class="col text-center col-xxl-12">
-                    <h1 class="title--20-36">Данные для рассылки</h1>
+                    <h1 class="title--20-36 text-uppercase mb-0">статья</h1>
                 </div>
-                <div class="col-1 d-xxl-none"></div>
             </div>
         </div>
     </section>
-
-    <section class="mailing__edit my-5">
-        <div class="container container--bc">
-            <div class="mailing-edit col-12 offset-xxl-1 col-xxl-10" style="background: url(../img/image229.png); background-size: contain;">
-
-                <div class="mailing-edit__name text-center title--h1">Черный Жемчуг</div>
-
-                <div class="mailing-edit__pic d-flex justify-content-center">
-                    <img src="../img/test-logo.png" alt="">
-                </div>
-
-                <div class="mailing-edit__title title--h4">
-                    Новинка для ухода за зрелой кожей
-                </div>
-
-                <div class="mailing-edit__text fw-600">
-                    Ведь возраст — это лишь цифра в паспорте. Мы за равенство возможностей для женщин всех возрастов. Ты можешь основать свою компанию в 20 лет, пойти учиться новой профессии в 40 и стать моделью в 60. И это не просто слова. Это истории реальных женщин.
-                    Мы стараемся, чтобы в нашем обществе вместо фразы «нужно соответствовать своему возрасту» женщины слышали «самое время!» и «ты можешь все!». Ведь возраст возможностей —это любой возраст!
-                </div>
-
-                <div class="mailing-edit__contact fw-600">
-                    <a href="mailto:">
-                        <img src="../img/sms.svg" alt="">
-                        <span>communications@e-mail.com</span>
-                    </a>
-                    <a href="tel:">
-                        <img src="../img/call.svg" alt="">
-                        <span>8 800 000 0 000</span>
-                    </a>
-                    <a href="#">adressaita.ru</a>
-                </div>
-
-                <div class="mailing-edit__banner">
-                    <img src="../img/image201.png" alt="">
-                </div>
-
-                <div class="mailing-edit__unsub">
-                    <p class="fw-600">
-                        Вы получили это письмо, потому что подписаны на рассылку сайта Beauty Compass. Чтобы отписаться, нажмите кнопку
+    <section class="container container--bc">
+        <div class="col-12 col-xxl-12">
+            <form name="article_edit-form" class="article__edit-form flex-column" enctype="multipart/form-data">
+                <div class="article__edit-form__header">
+                    <label for="cover__pic" class="select-wrap article__img_cover">
+                        <small>
+                            Обложка
+                        </small>
+                        <div id="avatar">
+                            <input type="file" name="cover__pic" id="cover__pic" class="file-input "/>
+                        </div>
+                    </label>
+                    <div class="article__copyrate-wrap">
+                        <div class="check__wrap m-0 article__copyrate">
+                            <input type="checkbox" name="copyr_prev" id="copyr_prev"  >
+                            <label form="article_edit-form" class="text--15-20" for="copyr_prev">Поставить копирайт?</label>
+                            <abbr title="">
+                                <div class="article__copyrate-quest">
+                                    ?
+                                </div>
+                            </abbr>
+                        </div>
+                        <div class="check__wrap m-0 article__copyrate">
+                            <input type="checkbox" name="sponsor" id="sponsor" >
+                            <label class="text--15-20" for="sponsor">Предоставлено спонсором?</label>
+                            <abbr title="">
+                                <div class="article__copyrate-quest">
+                                    ?
+                                </div>
+                            </abbr>
+                        </div>
+                    </div>
+                    <label for="title_article" class="select-wrap article__title">
+                        <small>
+                            Название статьи
+                        </small>
+                        <input class="form-control" type="text" name="title_article" id="title_article">
+                    </label>
+                    <p class="text--15-20 article__title-descript">
+                        Добавьте через запятую 5-7 тегов – название бренда, формат средства, основное действие, основные активы, тип кожи, сезон выпуска коллекции, возраст и пол и т.п.
+                        Например: «Клеона, крем для глаз, антиэйдж, пептиды, чувствительная кожа, 35+» или «Гельтек, гидрофильное масло, демакияж, очищение, новинка 2022»
                     </p>
-                    <a href="#">Отписаться</a>
+                    <div class="d-flex justify-content-between align-items-center article__multisel">
+                        <label class="select-wrap" for="brandItem">
+                            <small>
+                                Бренд
+                            </small>
+                            <select class="form-select" id="brandItem" name="brandItem" >
+                                <option value="Lorem">
+                                    Lorem
+                                </option>
+                                <option value="Lorem21">
+                                    Lorem21
+                                </option>
+                                <option value="Lorem2">
+                                    Lorem2
+                                </option>
+                                <option value="Lorem1">
+                                    Lorem1
+                                </option>
+                            </select>
+                        </label>
+                        <label class="select-wrap " for="categoryArticl">
+                            <small>
+                                Рубрика
+                            </small>
+                            <select class="form-select" id="categoryArticl" name="categoryArticl" >
+                                <option value="Lorem">
+                                    Lorem
+                                </option>
+                                <option value="Lorem21">
+                                    Lorem21
+                                </option>
+                                <option value="Lorem2">
+                                    Lorem2
+                                </option>
+                                <option value="Lorem1">
+                                    Lorem1
+                                </option>
+                            </select>
+                        </label>
+                        <label class="select-wrap ">
+                            <small>
+                                теги
+                            </small>
+                            <select multiple class="form-select" id="tag_for_article" name="tagsArticl" >
+                                <option value="Lorem">
+                                    Lorem
+                                </option>
+                                <option value="Lorem21">
+                                    Lorem21
+                                </option>
+                                <option value="Lorem2">
+                                    Lorem2
+                                </option>
+                                <option value="Lorem1">
+                                    Lorem1
+                                </option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
+                <div class="article__edit-form__body">
+                    <div class="article__editor-text" id="editor">
 
-            </div>
+                    </div>
+                    <div class="article__img-add" id="img-add">
+                        <input type="file" name="" class="d-none" accept="image/*" multiple id="upload-image">
+                        <label id="upload-image-label" class="d-block text--15-20" for="upload-image">
+                            Выберите или перетащите изображения
+                        </label>
+                        <div id="upload-error" class="d-block text--15-20">
+                        </div>
+                        <div id="upload-preview" class="d-flex align-content-center flex-wrap ">
 
-            <div class="mailing-form__buttons col-12 offset-xxl-1 col-xxl-10 my-4">
+                        </div>
+                    </div>
+                </div>
+                <div class="article__edit-form__footer">
+                    <div class="d-flex article__edit-form__footer-wrap-title">
+                        <p class="text-center text--15-30 text-uppercase">Сылки на страницы средств</p>
+                        <abbr title="">
+                            <div class="article__edit-form__footer-quest">
+                                ?
+                            </div>
+                        </abbr>
+                    </div>
+                    
+                    <div class="article__edit-form__footer-link-wrap d-flex flex-wrap align-items-center justify-content-between">
+                        <label for="url_article-1" class="select-wrap article__url">
+                            <small>
+                                URL
+                            </small>
+                            <input class="form-control" type="text" name="url_article-1" id="url_article-1">
+                        </label>
+                        <label for="url_article-2" class="select-wrap article__url">
+                            <small>
+                                URL
+                            </small>
+                            <input class="form-control" type="text" name="url_article-2" id="url_article-2">
+                        </label>
 
-                <a href="#" type="submit" class="btn__svg-confirm text--15-30 fw600 main-color hover-red d-flex align-items-center">
-                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M23.5 44.5781C12.0106 44.5781 2.67188 35.2394 2.67188 23.75C2.67188 12.2606 12.0106 2.92188 23.5 2.92188C34.9894 2.92188 44.3281 12.2606 44.3281 23.75C44.3281 35.2394 34.9894 44.5781 23.5 44.5781ZM23.5 5.82812C13.6188 5.82812 5.57812 13.8688 5.57812 23.75C5.57812 33.6313 13.6188 41.6719 23.5 41.6719C33.3813 41.6719 41.4219 33.6313 41.4219 23.75C41.4219 13.8688 33.3813 5.82812 23.5 5.82812Z" fill="#1560BD"/>
-                        <path d="M20.7478 30.6859C20.3603 30.6859 19.9922 30.5309 19.7209 30.2596L14.2378 24.7765C13.6759 24.2146 13.6759 23.2846 14.2378 22.7227C14.7997 22.1609 15.7297 22.1609 16.2916 22.7227L20.7478 27.179L30.7066 17.2202C31.2684 16.6584 32.1984 16.6584 32.7603 17.2202C33.3222 17.7821 33.3222 18.7121 32.7603 19.274L21.7747 30.2596C21.5034 30.5309 21.1353 30.6859 20.7478 30.6859Z" fill="#1560BD"/>
-                    </svg>
-                    <span class="text-decoration-none text-uppercase ms-2">Сохранить</span>
-                </a>
+                        <label for="url_article-3" class="select-wrap article__url">
+                            <small>
+                                URL
+                            </small>
+                            <input class="form-control" type="text" name="url_article-3" id="url_article-3">
+                        </label>
 
-                <a href="#" class="btn__svg-confirm text--15-30 fw600 main-color hover-red d-flex align-items-center">
-                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.7338 37.8204C9.55197 37.8204 8.4476 37.4135 7.65322 36.6579C6.64572 35.7085 6.16135 34.2747 6.33572 32.7247L7.0526 26.4472C7.18822 25.2654 7.9051 23.696 8.73822 22.8435L24.6451 6.00662C28.617 1.80224 32.7632 1.68599 36.9676 5.65787C41.172 9.62975 41.2882 13.776 37.3163 17.9804L21.4095 34.8172C20.5957 35.6891 19.0845 36.5029 17.9026 36.6966L11.6638 37.7622C11.3345 37.7816 11.0438 37.8204 10.7338 37.8204ZM30.8645 5.6385C29.3726 5.6385 28.0745 6.5685 26.757 7.9635L10.8501 24.8197C10.4626 25.2266 10.017 26.1954 9.93947 26.7572L9.2226 33.0347C9.1451 33.6741 9.3001 34.1972 9.64885 34.5266C9.9976 34.856 10.5207 34.9722 11.1601 34.8754L17.3988 33.8097C17.9607 33.7129 18.8907 33.2091 19.2782 32.8022L35.1851 15.9654C37.5876 13.4079 38.4595 11.0441 34.9526 7.75037C33.4026 6.2585 32.0657 5.6385 30.8645 5.6385Z" fill="#1560BD"/>
-                        <path d="M33.5949 21.2147C33.5561 21.2147 33.498 21.2147 33.4593 21.2147C27.4143 20.614 22.5511 16.0222 21.6211 10.0159C21.5049 9.22154 22.0474 8.48529 22.8418 8.34966C23.6361 8.23341 24.3724 8.77591 24.508 9.57029C25.2443 14.259 29.0418 17.8628 33.7693 18.3278C34.5636 18.4053 35.1449 19.1222 35.0674 19.9165C34.9705 20.6528 34.3311 21.2147 33.5949 21.2147Z" fill="#1560BD"/>
-                        <path d="M40.6875 44.0781H5.8125C5.01812 44.0781 4.35938 43.4194 4.35938 42.625C4.35938 41.8306 5.01812 41.1719 5.8125 41.1719H40.6875C41.4819 41.1719 42.1406 41.8306 42.1406 42.625C42.1406 43.4194 41.4819 44.0781 40.6875 44.0781Z" fill="#1560BD"/>
-                    </svg>
-                    <span class="text-decoration-none text-uppercase ms-2">Редактировать</span>
-                </a>
+                        <label for="url_article-4" class="select-wrap article__url">
+                            <small>
+                                URL
+                            </small>
+                            <input class="form-control" type="text" name="url_article-4" id="url_article-4">
+                        </label>
 
-            </div>
+                        <label for="url_article-5" class="select-wrap article__url">
+                            <small>
+                                URL
+                            </small>
+                            <input class="form-control" type="text" name="url_article-5" id="url_article-5">
+                        </label>
 
+                        <label for="url_article-5" class="select-wrap article__url">
+                        </label>
+
+                    </div>
+                    <div class="article__edit-form__footer-fnc-btn">
+                        <div id="publish">
+                            <p class="text--15-30">
+                                Опубликовать
+                            </p>
+                        </div>
+                        <div id="draft">
+                            <p class="text--15-30">
+                                Сохранить черновик
+                            </p>
+                        </div>
+                        <label id="timer">
+                            <p class="text--15-30 main">
+                                Таймер публикации
+                            </p>
+                            <input type="hidden" id="constrained" data-inline="true" data-multiple="false" data-open-on="today" data-time="true">
+                            <abbr title="">
+                                <div class="article__edit-form__footer-quest">
+                                    ?
+                                </div>
+                            </abbr>
+                        </label>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
-
 </main>
 
 <footer class="footer py-5 mt-auto">
@@ -601,9 +714,34 @@
         </div>
     </div>
 </div>
-
-<script src="../js/bootstrap.bundle.min.js"></script>
-<script src="../js/add-form-input.js"></script>
+<div class="modal fade error-form" id="errorDateModal"  tabindex="-1" role="dialog" aria-labelledby="ошибка ввода даты постинга" aria-hidden="true">
+    <div class="modal-dialog text-center" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
+            </div>
+            <div class="modal-body">
+                Некорректно введена дата
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade error-form" id="errorFormFill"  tabindex="-1" role="dialog" aria-labelledby="ошибка ввода даты постинга" aria-hidden="true">
+    <div class="modal-dialog text-center" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
+            </div>
+            <div class="modal-body">
+                Не все поля заполнены
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/editor.js"></script>
+<script src="../js/datepicker.js"></script>
+<script src="../js/select2.js" defer=""></script>
+<script src="../js/article_edit.js"></script>
 
 </body>
 </html>
