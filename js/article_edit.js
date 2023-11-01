@@ -76,7 +76,6 @@ function activeButton() {
     $('.datepicker').addClass('timer-hide')
 
     function sendFormData(formData,link=''){
-        console.log("Отправка завершена");
         
         //проверка входных значений
         if (!editor.getData() || 
