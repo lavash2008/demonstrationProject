@@ -994,3 +994,51 @@ $(document).ready(
   outputInfBrands()
 )
 
+function handleFileSelected(event) {
+  const file = event.target.files[0];
+  if (file) {
+    // Обработка загруженного файла
+    let reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = function () {
+      let img=$('.profile__body-photo')[0].children[1].children[0]
+      img.src=reader.result
+      img.classList.add('upload-img')
+      console.log(img)
+    }
+  
+    console.log("Загруженный файл:", file.name);
+  }
+}
+
+$('#visPassword').on('click',function(event){
+
+  event.preventDefault()
+  if(event.currentTarget.previousElementSibling.type=='password'){
+      $('#visPassword').css('background-image','url("../img/eye_hide.svg")');
+      event.currentTarget.previousElementSibling.type='text'
+  }
+  else{
+      event.currentTarget.previousElementSibling.type='password'
+      $('#visPassword').css('background-image','url("../img/eye_show.svg")');
+  } 
+})
+
+$('#visPasswordRep').on('click',function(event){
+
+  event.preventDefault()
+  if(event.currentTarget.previousElementSibling.type=='password'){
+      $('#visPasswordRep').css('background-image','url("../img/eye_hide.svg")');
+      event.currentTarget.previousElementSibling.type='text'
+  }
+  else{
+      $('#visPasswordRep').css('background-image','url("../img/eye_show.svg")');
+      event.currentTarget.previousElementSibling.type='password'
+  } 
+})
+
+$('.feed-button__settng').click((e)=>{
+  e.preventDefault()
+  $('.profile__body-modify')[0].classList.add('active')
+  $('.feed-button__settng')[0].classList.add('d-none')
+})
