@@ -13,7 +13,6 @@
   font-family: "Gilroy";
   src: url(fonts/Gilroy-SemiBold.woff2) format(woff2);
   src: url(fonts/Gilroy-SemiBold.woff) format(woff);
-
   font-weight: 600;
   font-style: normal;
 }
@@ -74,9 +73,11 @@
     background: none;
   }
 }
+
 .navbar-toggler {
   padding: 0;
 }
+
 .navbar-toggler-icon {
   display: block;
   width: 23px;
@@ -7654,9 +7655,11 @@ textarea {
       grid-template: repeat(3, 70px)/repeat(5, 1fr);
 }
 .manufacturer .profile__body-modify .upload-img {
-  width: 60%;
+  width: 90%;
   height: auto;
-  max-height: 90%;
+  max-height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .manufacturer .profile__body-modify .select-wrap {
   width: 100% !important;
@@ -7664,9 +7667,9 @@ textarea {
 }
 @media screen and (max-width: 768px) {
   .manufacturer .profile__body-modify {
-    -ms-grid-rows: (1fr)[1];
+    -ms-grid-rows: (150px)[1];
     -ms-grid-columns: (1fr)[2];
-        grid-template: repeat(1, 1fr)/repeat(2, 1fr);
+        grid-template: repeat(1, 150px)/repeat(2, 1fr);
   }
 }
 .manufacturer .profile__body-modify.active {
@@ -7715,6 +7718,9 @@ textarea {
     -ms-grid-column-span: 2;
     grid-area: 2/1/4/3;
   }
+}
+.manufacturer .profile__body-modify.active .profile__body-photo .logo-text {
+  display: contents;
 }
 .manufacturer .profile__body-modify.active .profile__body-tel {
   display: block;
@@ -7806,7 +7812,7 @@ textarea {
   }
 }
 .manufacturer .profile__body-modify.active .profile__body-inf {
-  display: none;
+  display: none !important;
 }
 .manufacturer .profile__body-btn-save {
   display: none;
@@ -7822,6 +7828,9 @@ textarea {
   grid-area: 1/1/4/2;
   height: 100%;
   margin-right: 20px;
+}
+.manufacturer .profile__body-photo .logo-text {
+  display: none;
 }
 .manufacturer .profile__body-photo div {
   border-radius: 15px;
@@ -7840,6 +7849,11 @@ textarea {
   -ms-grid-column: 2;
   -ms-grid-column-span: 3;
   grid-area: 1/2/4/5;
+}
+.manufacturer .profile__body-inf .row {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .manufacturer .profile__body-tel {
   display: none;

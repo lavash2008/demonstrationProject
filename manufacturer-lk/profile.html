@@ -142,17 +142,17 @@
             </div>
           </div>
           <div class="container container--bc">
-            <form class="profile__body-modify col-xxl-10 offset-xxl-1">
-              <label for="name" class="select-wrap profile__body-photo position-relative" id="name">
-                <small> 
+            <form class="profile__body-modify col-xxl-10 offset-xxl-1" id="profileInfo">
+              <label for="shop__file-input" class="select-wrap profile__body-photo position-relative" >
+                <small class="logo-text"> 
                   Логотип
                 </small>
                 
-                <div role="button">
+                <div role="button" class="d-flex justify-content-center align-content-center overflow-hidden">
                   <img
                     src="../img/gallery-add.svg"
                     alt="gallery-add logo"
-                    class="position-absolute top-50 start-50 translate-middle"
+                    class=""
                   />
                   <input
                     type="file"
@@ -164,7 +164,7 @@
                 
               </label>
               <div class="profile__body-name">
-                <label for="name" class="select-wrap" id="name">
+                <label for="name" class="select-wrap">
                   <small> 
                     Название компании
                   </small>
@@ -172,7 +172,7 @@
                 </label>
               </div>
               <div class="profile__body-tel">
-                <label for="phone" class="select-wrap" id="phone">
+                <label for="phone" class="select-wrap">
                   <small> 
                     Телефон
                   </small>
@@ -180,7 +180,7 @@
                 </label>
               </div>
               <div class="profile__body-email">
-                <label for="email" class="select-wrap" id="email">
+                <label for="email" class="select-wrap">
                   <small> 
                     E-mail
                   </small>
@@ -188,7 +188,7 @@
                 </label>
               </div>
               <div class="profile__body-passw">
-                <label for="pass" class="select-wrap" id="pass">
+                <label for="pass" class="select-wrap">
                   <small> 
                     Пароль
                   </small>
@@ -199,7 +199,7 @@
                 </label>
               </div>
               <div class="profile__body-passw-rep">
-                <label for="passRep" class="select-wrap" id="passRep">
+                <label for="passRep" class="select-wrap">
                   <small> 
                     Повтор пароля
                   </small>
@@ -210,10 +210,10 @@
                 </label>
               </div>
               <div class="profile__body-btn-save">
-                <button class="btn btn--blue text--15-24">Сохранить</button>
+                <button class="btn btn--blue text--15-24" id="sendParam">Сохранить</button>
               </div>
               <div
-                class="col-7 col-md-8 offset-md-1 col-xxl-10 offset-xxl-0 profile__body-inf"
+                class="col-md-8 offset-md-1 col-xxl-10 offset-xxl-0 profile__body-inf d-flex align-items-center justify-content-center"
               >
                 <div class="row row-g-3 ms-3">
                   <div class="col-12">
@@ -1425,6 +1425,25 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="errorMess" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="errorMessLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="errorMessLabel">...</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Хорошо</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="../js/jq.js"></script>
     <script src="../js/pogination.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
