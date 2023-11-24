@@ -1,4 +1,4 @@
-@import vars.sass
+@import "vars.sass"
 .manufacturer
   a
     text-decoration: none
@@ -41,143 +41,73 @@
             fill: $pre-color
 
     &__body
-      &-modify
-        .upload-img
-          width: 90%
-          height: auto
-          max-height: 100%
-          object-fit: cover
-        .select-wrap
-          width: 100% !important
-          margin: 0
-        display: grid
-        grid-template: repeat(3, 70px)/repeat(5, 1fr)
-        @media screen and (max-width: $second-breack-point)
-          grid-template: repeat(1, 150px)/repeat(2, 1fr)
+      grid-template-columns: 1fr 2fr 1fr
+      grid-template-rows: 26px auto auto auto repeat(3, auto)
+      grid-row-gap: 23px
+      grid-column-gap: 1rem
+      grid-template-areas: 'name name name' 'photo country country' 'photo town town' 'photo . .' 'tel tel tel' 'email email email' 'description description description' 'history history history' 'principles principles principles'
+      @media screen and (min-width: $second-breack-point)
+        grid-template-rows: repeat(3, 42px) repeat(3, auto)
+        grid-row-gap: 1.5rem
+        grid-column-gap: 1.5rem
+        grid-template-areas: 'photo name country' 'photo email town' 'photo tel .' 'description description description' 'history history history' 'principles principles principles'
 
-        &.active
-          grid-template: repeat(6, 60px)/repeat(4,1fr) 
-          grid-gap: 10px
-          @media screen and (max-width: $second-breack-point)
-            grid-template: repeat(6,60px)/repeat(5,1fr) 
-          .profile__body
-            &-name
-              display: block
-              grid-area: 1/2/2/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 1/1/2/6
-            &-photo
-              display: block
-              grid-area: 1/1/4/2
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 2/1/4/3
-              .logo-text
-                display: contents
-            &-tel
-              display: block
-              grid-area: 2/2/3/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 2/3/3/6
-            &-email
-              display: block
-              grid-area: 3/2/4/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 3/3/4/6
-            &-passw
-              display: block
-              grid-area: 4/1/5/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 4/1/5/6
-            &-passw-rep
-              display: block
-              grid-area: 5/1/6/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 5/1/6/6
-            &-btn-save
-              display: block
-              grid-area: 6/1/7/5
-              @media screen and (max-width: $second-breack-point)
-                grid-area: 6/1/7/6
+      @media screen and (min-width: $first-breack-point)
+        grid-template-columns: 187px auto 258px
+        grid-column-gap: 37px
+        grid-row-gap: 30px
 
-              justify-self: center
-              align-self: center
-            &-inf
-              display: none !important
+      .name
+        grid-area: name
+      .photo
+        grid-area: photo
+      .country
+        grid-area: country
+      .town
+        grid-area: town
+      .tel
+        grid-area: tel
+        @media screen and (min-width: $first-breack-point)
+          max-width: 410px
+      .email
+        grid-area: email
+        @media screen and (min-width: $first-breack-point)
+          max-width: 410px
+      .description
+        grid-area: description
+      .history
+        grid-area: history
+      .principles
+        grid-area: principles
 
-      &-btn-save
-        display: none
-      &-name
-        display: none
-      &-photo
-        grid-area: 1/1/4/2
-        height: 100%
-        margin-right: 20px
-        .logo-text
-          display: none
-        div
-          border-radius: 15px
-          background: $white-color
-          box-shadow: $box-shadow-regular
-          height: calc( 100% - 23px )
-
+      .tel, .email
         img
-          width: 54px
-          height: auto
-      &-inf
-        grid-area: 1/2/4/5
-        .row
-          height: fit-content
-      &-tel
-        display: none
-      &-email
-        display: none
-      &-passw
-        display: none
-        .passw
-          display: flex
-          width: 100%
-          .passw__vis  
-            display: block
-            margin-right: 0
-            margin-left: -30px
-            width: 30px
-            top: 9%
-            position: relative
-            left: -16px
-            background-image: url("../img/eye_show.svg")
-            background-repeat: no-repeat
-            background-size: 100%
-            background-position: center
-            @media screen and ( max-width: $first-breack-point )
-              background-size: 80%
-      &-passw-rep
-        display: none
-        .passw
-          display: flex
-          width: 100%
-          .passw__vis  
-            display: block
-            margin-right: 0
-            margin-left: -30px
-            width: 30px
-            top: 9%
-            position: relative
-            left: -16px
-            background-image: url("../img/eye_show.svg")
-            background-repeat: no-repeat
-            background-size: 100%
-            background-position: center
-            @media screen and ( max-width: $first-breack-point )
-              background-size: 80%
-      
-
+          width: 26px
+          height: 26px
+          @media screen and (min-width: $first-breack-point)
+            width: 42px
+            height: 42px
     &__label
       top: -12px
       left: 0
       margin-bottom: -10px
       @media screen and (min-width: $first-breack-point)
         top: -18px
-
+    &__photo
+      width: 114px
+      height: 114px
+      border-radius: 15px
+      background: $white-color
+      box-shadow: $box-shadow-regular
+      @media screen and (min-width: $second-breack-point)
+        width: 175px
+        height: 175px
+      @media screen and (min-width: $first-breack-point)
+        width: 187px
+        height: 187px
+      img
+        width: 54px
+        height: auto
     &__card
       &--btn
         justify-self: center
@@ -186,6 +116,7 @@
       .small-brake
         @media (max-width: $xs-breack-point)
           width: 60%
+
 
   .add-info
     &__button
@@ -298,8 +229,8 @@
       background: $main-color
     &__remove
       background: $pre-color
-
-
+ul
+  list-style: none
 .modal
   &__prices
     &-content
@@ -371,11 +302,349 @@
     &-apply
       color: $main-color
 
+.statistics_cosmetic
+  @media screen and (max-width: $first-breack-point)
+    max-width: fit-content
+
+.open_chart
+  display: flex
+  width: fit-content
+  @media screen and (max-width: $first-breack-point)
+    margin-top: 20px
+  p
+    width: fit-content
+    color: $main-color
+  svg
+    margin: auto 20px
+    width: 25px
+    color: $main-color
+    transition: .6s
+  &.active
+    svg
+      transform: rotate(180deg)
+
+.icon
+  &-statistic
+    width: fit-content
+    position: absolute
+    transform: translate(277%, 145%)
+    @media screen and (max-width: $first-breack-point)
+      transform: translate(0%, 130%)
+  &-filter
+    background: url(../img/burger_main-color.svg) no-repeat
+
+#navbarFilterBtn
+  color: $main-color
+  display: none !important
+  @media screen and (max-width: $first-breack-point)
+    display: flex !important
 
 
+.title-custom
+  @media screen and (max-width: $first-breack-point)
+    margin-bottom: 50px
 
+.item
+  margin-top: 30px
+  &__chart
+    background: none
+    color: $dark-color
+    transition: .5s
+    margin-left:0
+    margin-top: 30px
+    &-open
+      background: linear-gradient(144.75deg, #1560BD 31.52%, #194071 72.37%)
+      color: $sub-color
+      @media screen and (max-width: $first-breack-point)
+        width: 100vw
+      @media screen and (max-width: $second-breack-point)
+        width: 100vw
+        margin-left: -10px
+      
+      div:first-child
+        @media screen and (max-width: $second-breack-point)
+          max-width: 87vw
 
+      svg
+        color: $sub-color
+        transform: rotate(180deg)
+      .open_chart
+        padding-top: 20px
+      &-brand
+        background: linear-gradient(144.75deg, #1560BD 31.52%, #194071 72.37%)
+        color: $sub-color
+        margin-top: 15px
+        .open_chart
+          padding-top: 0
+    &-all
+      background: linear-gradient(144.75deg, #1560BD 31.52%, #194071 72.37%)
+      color: $sub-color
+      padding-top: 40px
+      padding-bottom: 140px
+      margin: 0 auto
+      @media screen and (max-width: $second-breack-point)
+        margin-left: -3.59%
+        margin-right: -2.4%
+      div
+        width:  100vw
+        @media screen and (max-width: $second-breack-point)
+          max-width: 900px
+        height: 100vh
+        min-height: 500px
+        max-height: 600px
+        canvas
+          @media screen and (max-width: $second-breack-point)
+            width: 100%
+            height: 100%
+  &__inside
+    display: grid
+    grid-template: repeat(5, 60px) / ( 250px 1fr 500px)
+    @media screen and (max-width: $first-breack-point)
+      grid-template: 60px 20px 40px repeat(2, 50px) 30px / ( 1fr 3fr)
+      grid-gap: 5px
+    @media screen and (max-width: $second-breack-point)
+      grid-template: 60px 20px 50px repeat(2, 50px) 30px / ( 1fr 1fr)
+    &-brand
+      display: grid
+      grid-template: repeat(3, 30px) / ( 20% 60% 20%)
+      .item
+        &__image-view
+          grid-row: 1 / 4
+        &__title
+          grid-row: 1/4
+          align-self: center
+          width: 90%
+        &__chart
+          margin-top: 0
+          grid-row: 1/4
+          align-self: center
+          justify-self: right
+  &__image-view
+    grid-column: 1 / 2
+    grid-row: 1 / 5
+    @media screen and (max-width: $first-breack-point)
+      grid-row: 2 / 7
+      min-width: 125px
 
+    img
+      height: 100%
+      @media screen and (max-width: $first-breack-point)
+        width: auto
+      @media screen and (max-width: $second-breack-point)
+        width: 90%
+        height: auto
+        max-height: 100%
+    
+  &__title
+    grid-column: 2 / 3
+    grid-row: 1/3
+    width: 80%
+    @media screen and (max-width: $first-breack-point)
+      grid-column: 1 / 3
+      grid-row: 1/2
+    p
+      height: 50%
+      text-overflow: ellipsis
+      overflow: hidden
+      text-align: start
+      white-space: nowrap
+      @media screen and (max-width: $first-breack-point)
+        height: 25%
+        margin-bottom: 10px
+  &__rating-value
+    grid-column: 2 / 3
+    grid-row: 3
+    @media screen and (max-width: $first-breack-point)
+      width: 19%
+      grid-row: 2
+    @media screen and (max-width: $second-breack-point)
+      width: 62%
+    
+    &::before
+      width: 200px
+      height: 37px
+      @media screen and (max-width: $first-breack-point)
+        height: 20px
+      @media screen and (max-width: $second-breack-point)
+        width: 105px
+    .rating__active
+      width: 100%
+      &::before
+        width: 200px
+        height: 37px
+        @media screen and (max-width: $first-breack-point)
+          height: 20px
+        @media screen and (max-width: $second-breack-point)
+          width: 105px
 
+        
+  &__statistic-number
+    grid-column: 2 / 3
+    grid-row: 4
+    @media screen and (max-width: $first-breack-point)
+      grid-row: 3
+      flex-wrap: wrap
+    @media screen and (max-width: $second-breack-point)
+      width: 80%
 
+    &__element
+      margin-right: 20px 
+      margin-bottom: 5px 
+      @media screen and (max-width: $first-breack-point)
+        margin-right: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        display: flex
+        width: 45%
+        margin-right: 5%
+      img
+        height: 37px
+        aspect-ratio: 1/1
+        margin-right: 10px
+        @media screen and (max-width: $first-breack-point)
+          height: 20px
+      span
+        @media screen and (max-width: $first-breack-point)
+          display: block
+        &:last-child
+          color: $dark-semi-light
+  &__btn
+    margin-top: 18px
+    grid-column: 1 / 3
+    grid-row: 5
+    display: flex
+    overflow-x: scroll
+    overflow-y: hidden
+    height: fit-content
+    padding-bottom: 15px
+    scrollbar-width: thin
+    scrollbar-color: $main-color transparent
 
+    @media screen and (max-width: $first-breack-point)
+      grid-column: 2/3
+      grid-row: 4/7
+      overflow-x: hidden
+      overflow-y: scroll
+      flex-wrap: wrap
+      height: 80%
+    @media screen and (max-width: $second-breack-point)
+      margin-top: 0
+      width: 80%
+
+    &::-webkit-scrollbar 
+      width: 5px
+      margin-top: 5px
+    
+    &::-webkit-scrollbar-thumb 
+      border-radius: 10px
+      background-color: $main-color
+      
+    &::-webkit-scrollbar-track 
+      color: $main-color
+      border-radius: $border-radius
+
+    transition: color 0.3s
+    a
+      flex-shrink: 0
+      background: $main-color
+      margin-right: 30px
+      color: $sub-color
+      @media screen and (max-width: $first-breack-point)
+        margin-bottom: 10px
+
+      &:last-child
+        margin: 0
+      &:hover
+        color: $sub-color !important
+        background: $pre-color !important
+      &:visited
+        color: $sub-color
+        background: $main-color
+
+.chart
+  transition: .5s
+  overflow: hidden
+  height: 0
+  margin-bottom: 30px
+  canvas
+    width: 100% !important
+    height: fit-content !important
+    box-shadow: $box-shadow-sm
+    padding: 20px 0
+    @media screen and (max-width: $first-breack-point)
+      padding-top: 0 !important
+    @media screen and (max-width: $second-breack-point)
+      margin-left: -2px
+
+  &-open
+    height: 640px
+    padding-bottom: 130px
+    @media screen and (max-width: $second-breack-point)
+      width: 83vw
+      height: 540px
+
+    &__btn-param
+      padding: 20px 0
+      height: auto !important
+      scrollbar-width: thin
+      scrollbar-color: $main-color transparent
+      &::-webkit-scrollbar 
+        width: 5px
+        margin-top: 5px
+    
+      &::-webkit-scrollbar-thumb 
+        border-radius: 10px
+        background-color: $main-color
+        
+      &::-webkit-scrollbar-track 
+        color: $main-color
+        border-radius: $border-radius
+      @media screen and (max-width: $second-breack-point)
+        overflow: scroll
+        height: 30% !important
+      .btn
+        background: $main-color
+        color: $sub-color
+        @media screen and (max-width: $second-breack-point)
+          margin-bottom:10px 
+        &:hover
+          color: $sub-color !important
+          background: $pre-color !important
+        &:visited
+          color: $sub-color
+          background: $main-color
+      &-all
+        width: auto !important
+        min-height: 110px !important
+        @media screen  and (max-width: $second-breack-point)
+          max-height: fit-content
+          height: 160px !important
+    
+
+  .output__statistic-items
+  margin-bottom: 30px
+  &-all
+    width: 100vw
+    margin-bottom: 0
+    @media screen  and (max-width: $second-breack-point)
+      width: 95vw
+  ul
+    list-style: none
+
+.products
+  &__statistic
+    #rating,#view,#visit,#favarite,#new,#default
+      cursor: pointer
+    .nav-link
+      background: $main-color !important
+      margin-bottom: 20px
+    @media screen and (max-width: $first-breack-point)
+      display: none
+    &-mobile
+      display: flex
+    @media screen and (max-width: $first-breack-point)
+      .top-bar__list
+        margin-bottom: 0
+
+#viewBrandChart
+  margin-bottom: 10px
